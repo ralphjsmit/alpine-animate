@@ -1,6 +1,6 @@
 # Animate your ALpine components🚀
 
-This package provides you with a simple helper to animate your ALpine.js components. 
+This package provides you with a simple helper to animate your ALpine.js components.
 
 ## Installation
 
@@ -25,6 +25,7 @@ Alpine.start()
 You can also install the package via a CDN:
 
 ```html
+
 <script src="https://unpkg.com/@ralphjsmit/alpine-animate@1.0.0/dist/cdn.min.js" defer></script>
 ```
 
@@ -33,48 +34,51 @@ You can also install the package via a CDN:
 To prepare an animation on your component, you can add the `x-animate` and `x-animate.reset` attributes to it:
 
 ```html
+
 <div x-data="{ isAnimating: false }" x-cloak class="duration-[800ms]"
-  x-on:notify.window="
+     x-on:notify.window="
     if (isAnimating) return;
 
     isAnimating = true;
     
-    // Let's animate the notification
-    $animate
+    // Let's animate the notification. The animation should take 200ms.
+    $animate(0.2);
     
-    // The animation will take roughly 800 ms (defined by the Tailwind CSS class above). 
-    // When the notification is animating, we'll also start the process to hide it again.
-    // This process will take 800 ms as well.
+    // The animation will take roughly 200 ms. When the notification is animating, we'll also 
+    // start the process to hide it again.
     setTimeout(() => {
-        $animateReset
+        // The 'reset animation' will take 0ms, so we'll just hide the notification immediately.
+        $animateReset(0);
                 
         isAnimating = false;
     }, 300);
   "
-  <!-- When the component initializes, we'll call the $animateReset magic helper to reset the state. We can use x-cloak to hide the component before this initialization has happened. -->
-  x-init="$animateReset"
-  x-animate="{
-    top: '100px',
-    right: '12px',
-    opacity: '1.0'
-  }"
-  x-animate.reset="{
-    top: '100px',
-    right: '-200px',
-    opacity: '0.0',
-  }">
+<!-- When the component initializes, we'll call the $animateReset() magic helper to reset the state. We can use x-cloak to hide the component before this initialization has happened. -->
+x-init="$animateReset(0)"
+x-animate="{
+top: '100px',
+right: '12px',
+opacity: '1.0'
+}"
+x-animate.reset="{
+top: '100px',
+right: '-200px',
+opacity: '0.0',
+}">
 ```
 
-As you can see, you can call the `$animate` helper to update the CSS properties to their new values. This is done inline, via the `style` attribute. When you want to revert the animation state, you can use the `$animateReset` helper to reset the animation to it's initial state.
+As you can see, you can call the `$animate()` helper to update the CSS properties to their new values. This is done inline, via the `style` attribute. When you want to revert the animation state, you can use the `$animateReset()` helper to reset the animation to it's initial state.
 
 ### Calling the animation from a different component
 
-An interesting and useful technique is to call the `$animate` and `$animateReset` helpers from another element. To do so, you can use the `Alpine.evaluate()` helper:
+An interesting and useful technique is to call the `$animate()` and `$animateReset()` helpers from another element. To do so, you can use the `Alpine.evaluate()` helper:
 
 ```js
 <div x-data>
-  <button type="button" @click="Alpine.evaluate($el.nextElementSibling, '$animate')">Click me!</button>
-  <div class="bg-[red]" x-animate="{ background-color: 'orange' }"></div>
+    <button type="button"
+    @click="Alpine.evaluate($el.nextElementSibling, '$animate()')">Click me!
+</button>
+<div class="bg-[red]" x-animate="{ background-color: 'orange' }"></div>
 </div>
 ```
 
