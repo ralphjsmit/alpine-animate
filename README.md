@@ -1,4 +1,4 @@
-# Animate your ALpine components🚀
+# Animate your Alpine components🚀
 
 This package provides you with a simple helper to animate your ALpine.js components.
 
