@@ -16,6 +16,17 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Commit updated project files
+        run: |
+          git config --local user.email "rjs@ralphjsmit.com"
+          git config --local user.name "Ralph J. Smit"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update project files"
+          git fetch
+          git branch -u origin/main
+          git rebase
+          git push -f origin main
+
   publish-npm:
     name: "Publish to npm"
     needs: build
