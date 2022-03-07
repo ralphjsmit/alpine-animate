@@ -2,10 +2,11 @@ name: "Publish to NPM"
 
 on:
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   build:
+    name: "Build files"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,6 +17,7 @@ jobs:
       - run: npm run build
 
   publish-npm:
+    name: "Publish to npm"
     needs: build
     runs-on: ubuntu-latest
     steps:
