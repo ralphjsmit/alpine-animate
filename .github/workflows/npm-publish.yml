@@ -25,6 +25,7 @@ jobs:
           git fetch
           git add .
           git diff-index --quiet HEAD || git commit -m "Update project files"
+          git push --set-upstream origin main
 
   publish-npm:
     name: "Publish to npm"
