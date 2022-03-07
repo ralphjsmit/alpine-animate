@@ -22,6 +22,9 @@ jobs:
           git config --local user.email "rjs@ralphjsmit.com"
           git config --local user.name "Ralph J. Smit"
           git branch -u origin/main
+          git fetch
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Update project files"
 
   publish-npm:
     name: "Publish to npm"
