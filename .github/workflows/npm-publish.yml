@@ -3,7 +3,6 @@ name: "Publish to NPM"
 on:
   release:
     types: [ created ]
-  push:
 
 jobs:
   build:
@@ -15,17 +14,6 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm run build
-
-      - name: Commit updated project files
-        run: |
-          git config --local user.email "rjs@ralphjsmit.com"
-          git config --local user.name "Ralph J. Smit"
-          git branch -u origin/main
-          git fetch
-          git add .
-          git diff-index --quiet HEAD || git commit -m "Update project files"
-          git push --set-upstream origin main
 
   publish-npm:
     name: "Publish to npm"
