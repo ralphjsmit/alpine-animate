@@ -1,7 +1,7 @@
 {
     "name": "@ralphjsmit/alpine-animate",
     "description": "Make it more easy to animate your Alpine components.",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": {
         "name": "Ralph J. Smit",
         "email": "rjs@ralphjsmit.com",
@@ -19,10 +19,7 @@
         "esbuild": "^0.8.39"
     },
     "scripts": {
-        "test": "npm run build && node --experimental-vm-modules node_modules/.bin/jest",
         "build": "node ./scripts/build.js",
-        "watch": "node ./scripts/build.js --watch",
-        "lint": "eslint .",
-        "lint-fix": "eslint . --fix"
+        "watch": "node ./scripts/build.js --watch"
     }
 }
