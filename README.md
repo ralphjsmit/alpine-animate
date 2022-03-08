@@ -53,18 +53,18 @@ To prepare an animation on your component, you can add the `x-animate` and `x-an
         isAnimating = false;
     }, 300);
   "
-<!-- When the component initializes, we'll call the $animateReset() magic helper to reset the state. We can use x-cloak to hide the component before this initialization has happened. -->
-x-init="$animateReset(0)"
-x-animate="{
-top: '100px',
-right: '12px',
-opacity: '1.0'
-}"
-x-animate.reset="{
-top: '100px',
-right: '-200px',
-opacity: '0.0',
-}">
+  <!-- When the component initializes, we'll call the $animateReset() magic helper to reset the state. We can use x-cloak to hide the component before this  initialization has happened. -->
+  x-init="$animateReset(0)"
+  x-animate="{
+    top: '100px',
+    right: '12px',
+    opacity: '1.0'
+  }"
+  x-animate.reset="{
+    top: '100px',
+    right: '-200px',
+    opacity: '0.0',
+  }">
 ```
 
 As you can see, you can call the `$animate()` helper to update the CSS properties to their new values. This is done inline, via the `style` attribute. When you want to revert the animation state, you can use the `$animateReset()` helper to reset the animation to it's initial state.
