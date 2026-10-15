@@ -16,7 +16,7 @@
     "type": "module",
     "devDependencies": {
         "brotli-size": "^4.0.0",
-        "esbuild": "^0.8.39"
+        "esbuild": "^0.25.0"
     },
     "scripts": {
         "build": "node ./scripts/build.js",
